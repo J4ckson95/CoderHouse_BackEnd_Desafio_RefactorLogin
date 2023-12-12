@@ -1,6 +1,7 @@
 import { Router } from "express";
 import userModel from "../models/user.model.js"
 import { isValidPassword, createHash } from "../utils.js"
+import passport from "passport";
 
 const router = Router()
 
@@ -25,4 +26,18 @@ router.get("/logout", (req, res) => {
         res.redirect("/login")
     })
 })
+//!----------------------------------------------------------------
+router.get(
+    "/login/github",
+    passport.authenticate("github", { scope: ["user:email"] })
+)
+router.get(
+    "/login/githubcallback",
+    passport.authenticate("github", { failureRedirect: "/login" }),
+    (req, res) => {
+        console.log("callback", req.user);
+        req.session.user = req.user
+        res.redirect("/index")
+    }
+)
 export default router

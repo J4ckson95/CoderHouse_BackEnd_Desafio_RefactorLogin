@@ -6,6 +6,8 @@ import handlebars from "express-handlebars"
 import __dirname from "./utils.js"
 import viewsRouter from "./routes/views.router.js"
 import sessionRouter from "./routes/session.router.js"
+import initializePassport from "./config/passport.config.js"
+import passport from "passport"
 
 const app = express()
 const mongoUrl = "mongodb+srv://J4ckson:IIQyDhhK1Ax1pSgX@coderhousebackend.jdnxmo1.mongodb.net/"
@@ -22,6 +24,9 @@ app.use(session({
     resave: true,
     saveUninitialized: true
 }))
+initializePassport()
+app.use(passport.initialize())
+app.use(passport.session())
 
 app.engine("handlebars", handlebars.engine())
 app.set("views", __dirname + `/views`)

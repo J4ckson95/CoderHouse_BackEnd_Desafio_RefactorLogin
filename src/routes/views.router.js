@@ -9,6 +9,7 @@ const auth = (req, res, next) => {
     if (!req.session?.user) return res.redirect("/login")
     return next()
 }
+//! -----------------------------------------------------
 router.get("/login", sessionIn, (req, res) => {
     return res.render("login", {})
 })
