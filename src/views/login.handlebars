@@ -10,6 +10,10 @@
     }
 
     .login-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
         background-color: #fff;
         padding: 20px;
         border-radius: 8px;
@@ -66,7 +70,7 @@
             <input type="password" name="password" placeholder="Contraseña" required>
             <button type="submit">Iniciar Sesión</button>
         </form>
-        <a href="/api/session/github" class="github-btn">Iniciar Sesión con GitHub</a>
         <p>No tienes una cuenta <a href="/register">Regístrate</a></p>
+        <a href="/api/session/login/github" class="github-btn">Iniciar Sesión con GitHub</a>
     </div>
 </body>
